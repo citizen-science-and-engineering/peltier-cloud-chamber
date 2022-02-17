@@ -1,13 +1,16 @@
 #include <Arduino.h>
-#include <WiFi.h>
 #include <max6675.h>
 #include "main.h"
 
 MAX6675 thermocouple1(probe1_CLK, probe1_CS, probe1_DO);
 MAX6675 thermocouple2(probe2_CLK, probe2_CS, probe2_DO);
+MAX6675 thermocouple3(probe3_CLK, probe3_CS, probe3_DO);
 
 void setup()
 {
+  pinMode(LED_BUILTIN,OUTPUT);
+  digitalWrite(LED_BUILTIN,HIGH);
+
   Serial.begin(9600);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS))
@@ -32,25 +35,29 @@ void loop()
 {
 
   float p1 = thermocouple1.readCelsius();
-  delay(100);
+  delay(50);
   float p2 = thermocouple2.readCelsius();
-  delay(100);
+  delay(50);
+  float p3 = thermocouple3.readCelsius();
+  delay(50);
 
   display.clearDisplay();
 
   display.setCursor(0, 0); // Start at top-left corner
-  display.println(F("Probe 1"));
+  display.print(F("Probe 1: "));
   display.println(p1);
-  display.println(F("Probe 2"));
+  display.print(F("Probe 2: "));
   display.println(p2);
+  display.print(F("Probe 3: "));
+  display.println(p3);
 
   display.display();
 
-  char s[120];
-  sprintf(s, "{\"DataSets\":[{\"Tag\":\"probe1\",\"Value\":%.2f},{\"Tag\":\"probe2\",\"Value\":%.2f}]}\r\n", p1, p2);
+  char s[250];
+  sprintf(s, "{\"DataSets\":[{\"Tag\":\"probe1\",\"Value\":%.2f},{\"Tag\":\"probe2\",\"Value\":%.2f},{\"Tag\":\"probe3\",\"Value\":%.2f}]}\r\n", p1, p2, p3);
   Serial.write(s);
 
-  delay(1000);
+  delay(1000-150);
 }
 
 void Display(String line1)

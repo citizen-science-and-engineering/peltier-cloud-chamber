@@ -2,9 +2,11 @@
 #include <max6675.h>
 #include "main.h"
 
-MAX6675 thermocouple1(probe1_CLK, probe1_CS, probe1_DO);
-MAX6675 thermocouple2(probe2_CLK, probe2_CS, probe2_DO);
-MAX6675 thermocouple3(probe3_CLK, probe3_CS, probe3_DO);
+MAX6675 thermocouple1(SPI0_SCK, probe1_CS, SPI0_MISO);
+MAX6675 thermocouple2(SPI0_SCK, probe2_CS, SPI0_MISO);
+MAX6675 thermocouple3(SPI0_SCK, probe3_CS, SPI0_MISO);
+MAX6675 thermocouple4(SPI0_SCK, probe4_CS, SPI0_MISO);
+
 
 void setup()
 {
@@ -40,21 +42,25 @@ void loop()
   delay(50);
   float p3 = thermocouple3.readCelsius();
   delay(50);
+  float p4 = thermocouple4.readCelsius();
+  delay(50);
 
   display.clearDisplay();
 
   display.setCursor(0, 0); // Start at top-left corner
-  display.print(F("Probe 1: "));
+  display.print(F("ThermProbe 1: "));
   display.println(p1);
-  display.print(F("Probe 2: "));
+  display.print(F("ThermProbe 2: "));
   display.println(p2);
-  display.print(F("Probe 3: "));
+  display.print(F("ThermProbe 3: "));
   display.println(p3);
+  display.print(F("ThermProbe 4: "));
+  display.println(p4);
 
   display.display();
 
   char s[250];
-  sprintf(s, "{\"DataSets\":[{\"Tag\":\"probe1\",\"Value\":%.2f},{\"Tag\":\"probe2\",\"Value\":%.2f},{\"Tag\":\"probe3\",\"Value\":%.2f}]}\r\n", p1, p2, p3);
+  sprintf(s, "{\"DataSets\":[{\"Tag\":\"ThermProbe1\",\"Value\":%.2f},{\"Tag\":\"ThermProbe2\",\"Value\":%.2f},{\"Tag\":\"ThermProbe3\",\"Value\":%.2f},{\"Tag\":\"ThermProbe4\",\"Value\":%.2f}]}\r\n", p1, p2, p3, p4);
   Serial.write(s);
 
   delay(1000-150);

@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <img src="docs/img/CloudChamberRender.png" alt="rendering" width="400"/>
+  <img src="docs/img/PeltierCloudChamber_20220225.jpg" alt="rendering" width="400"/>
 </p>
 
 
@@ -21,8 +21,9 @@
 * Firmware <br>
 [Temperature Monitor (esp32)](https://github.com/citizen-science-and-engineering/cloud-chamber/tree/main/firmware/temperature_monitor_esp32)
 
+#### Test run
+https://youtu.be/RtNYaMzXH0c
 
-
-
+[![Peltier cloud chamber, test run](http://img.youtube.com/vi/RtNYaMzXH0c/0.jpg)](https://youtu.be/RtNYaMzXH0c "Peltier cloud chamber, test run")
 
 

@@ -16,10 +16,10 @@
 [On Shape](https://cad.onshape.com/documents/e24d3f0c59092dfada429e6a/w/2fb653e358505a46670996ee/e/9da5f6a65d5f518dba16bbf6?renderMode=0&uiState=620a0dbf09703926ef2a5f91)
 
 * Circuit Diagram <br>
-[to be completed]
+[KiCad 6](https://github.com/citizen-science-and-engineering/peltier-cloud-chamber/tree/main/circuit%20diagrams/temperature_monitor_pi_pico)
 
 * Firmware <br>
-[Temperature Monitor (esp32)](https://github.com/citizen-science-and-engineering/cloud-chamber/tree/main/firmware/temperature_monitor_esp32)
+[Temperature Monitor (Pi Pico)](https://github.com/citizen-science-and-engineering/peltier-cloud-chamber/tree/main/firmware/temperature_monitor_pi_pico)
 
 #### Test run
 Warning: Loud
